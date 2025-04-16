@@ -110,10 +110,15 @@ function showQuestion() {
     
     let questionHTML = `
         <div class="flex flex-col items-center w-full">
+            <div class="progress-bar-container mb-4 w-full max-w-md">
+                <div class="progress-bar" style="width: ${(currentQuestion / questions.length) * 100}%"></div>
+                <span class="progress-text">Question ${currentQuestion + 1} of ${questions.length}</span>
+            </div>
             <div class="timer-container mb-4">
                 <span class="text-yellow-400 text-xl">Time Left: <span id="timer">60</span>s</span>
             </div>
             ${currentQuestion === 0 ? '<img src="images/Lightsaber-Vector.png" alt="Lightsaber" class="yoda-logo">' : ''}
+            ${currentQuestion === 1 ? '<img src="images/deathstar.png" alt="Death Star" class="yoda-logo">' : ''}
             ${currentQuestion === 3 ? '<img src="images/darth vader.png" alt="Darth Vader" class="yoda-logo">' : ''}
             <h2 class="question-text text-center mb-6">${question.question}</h2>
             <div class="flex flex-col items-center w-full gap-4">
@@ -163,6 +168,16 @@ function showResult() {
     resultDiv.innerHTML = `
         <h2 class="result-title">Quiz Complete!</h2>
         <p class="result-score">Your score: ${score} out of ${questions.length}</p>
+        <div class="result-message mb-6">
+            ${score === questions.length ? 
+                '<p class="text-yellow-400 text-xl">Perfect score! You are a true Star Wars master!</p>' : 
+                score >= questions.length * 0.8 ? 
+                '<p class="text-yellow-400 text-xl">Impressive! The Force is strong with you!</p>' : 
+                score >= questions.length * 0.6 ? 
+                '<p class="text-yellow-400 text-xl">Good job! You know your Star Wars!</p>' : 
+                '<p class="text-yellow-400 text-xl">Keep practicing! May the Force be with you!</p>'
+            }
+        </div>
         <button onclick="resetQuiz()" class="try-again-button">
             Try Again
         </button>

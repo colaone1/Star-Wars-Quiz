@@ -307,4 +307,32 @@ img[src*="Windu-Vector"] {
 .timer-container span {
     font-family: 'Orbitron', sans-serif;
     letter-spacing: 2px;
+}
+
+/* Progress bar styles */
+.progress-bar-container {
+    height: 20px;
+    background-color: rgba(0, 0, 0, 0.5);
+    border: 1px solid #FFE81F;
+    border-radius: 10px;
+    overflow: hidden;
+    position: relative;
+    margin: 0 auto;
+}
+
+.progress-bar {
+    height: 100%;
+    background-color: #FFE81F;
+    transition: width 0.3s ease;
+}
+
+.progress-text {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    color: black;
+    font-weight: bold;
+    font-size: 12px;
+    text-shadow: 0 0 2px white;
 } 
