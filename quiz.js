@@ -123,45 +123,15 @@ function checkAnswer(answerIndex) {
     showQuestion();  // Display the next question
 }
 
-// Function to determine the user's Star Wars personality type based on their score
-function getPersonalityType() {
-    const percentage = (score / questions.length) * 100;
-    // Return different personality types based on the score percentage
-    if (percentage >= 80) {
-        return {
-            type: "Master Jedi",
-            message: "The Force is strong with you! You are a true Star Wars expert!"
-        };
-    } else if (percentage >= 60) {
-        return {
-            type: "Padawan",
-            message: "You're on your way to becoming a Jedi Master! Keep learning!"
-        };
-    } else if (percentage >= 40) {
-        return {
-            type: "Youngling",
-            message: "You're just starting your Star Wars journey. The Force will guide you!"
-        };
-    } else {
-        return {
-            type: "Force Sensitive",
-            message: "The Force is awakening within you. Time to rewatch the movies!"
-        };
-    }
-}
-
 // Function to display the final results
 function showResult() {
     questionContainer.innerHTML = '';  // Clear the question container
     resultDiv.classList.remove('hidden');  // Show the result container
-    const personality = getPersonalityType();  // Get the personality type based on score
     
     // Create and display the results HTML
     resultDiv.innerHTML = `
         <h2 class="result-title">Quiz Complete!</h2>
         <p class="result-score">Your score: ${score} out of ${questions.length}</p>
-        <p class="text-xl font-bold text-yellow-400 mb-2">${personality.type}</p>
-        <p class="mb-4">${personality.message}</p>
         <button onclick="resetQuiz()" class="try-again-button">
             Try Again
         </button>
