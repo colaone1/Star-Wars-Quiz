@@ -3,13 +3,14 @@
 
 /* Base container styles */
 .quiz-container {
-    @apply rounded-lg shadow-lg p-8 max-w-2xl w-full mx-auto;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    background-color: rgba(0, 0, 0, 0.9);
+    max-width: 800px;
+    width: 90%;
+    margin: 0 auto;
+    padding: 2rem;
+    background-color: rgba(0, 0, 0, 0.8);
     border: 2px solid #FFE81F;
-    box-shadow: 0 0 20px rgba(255, 232, 31, 0.5);
+    border-radius: 8px;
+    box-shadow: 0 0 20px rgba(255, 232, 31, 0.3);
     position: relative;
     overflow: hidden;
 }
@@ -89,18 +90,13 @@
 
 /* Answer button styles */
 .answer-button {
-    @apply p-3 rounded-lg border transition duration-200;
-    text-align: center;
-    flex: 1;
-    min-width: 150px;
-    max-width: 200px;
-    margin: 0.5rem;
+    @apply py-3 px-6 rounded-lg transition duration-200;
     background-color: transparent;
     color: #FFE81F;
-    border: 1px solid #FFE81F;
+    border: 2px solid #FFE81F;
     font-family: 'Orbitron', sans-serif;
+    text-align: center;
     position: relative;
-    z-index: 1;
     letter-spacing: 1px;
     overflow: hidden;
 }
@@ -182,11 +178,9 @@
 /* Question container styles */
 #question-container {
     width: 100%;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    position: relative;
-    z-index: 1;
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 1rem;
 }
 
 /* Quiz content styles */
@@ -279,6 +273,16 @@ body::before {
 }
 
 #current-quote {
+    font-family: 'Orbitron', sans-serif;
+    letter-spacing: 1px;
+}
+
+.question-text {
+    font-size: 1.5rem;
+    font-weight: 600;
+    color: #FFE81F;
+    text-shadow: 0 0 5px #FFE81F;
+    margin-bottom: 2rem;
     font-family: 'Orbitron', sans-serif;
     letter-spacing: 1px;
 } 

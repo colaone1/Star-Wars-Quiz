@@ -91,15 +91,15 @@ function showQuestion() {
     
     // Create the HTML for the question and answer buttons
     let questionHTML = `
-        <div class="flex flex-col items-center">
-            <h2 class="question-text text-center w-full">${question.question}</h2>
-            <div class="space-y-3 w-full max-w-md">
+        <div class="flex flex-col items-center w-full">
+            <h2 class="question-text text-center mb-6">${question.question}</h2>
+            <div class="flex flex-col items-center w-full gap-4">
     `;
 
     // Create a button for each possible answer
     question.answers.forEach((answer, index) => {
         questionHTML += `
-            <button class="answer-button text-center"
+            <button class="answer-button w-full max-w-md"
                     onclick="checkAnswer(${index})">
                 ${answer}
             </button>

@@ -12,6 +12,8 @@
     <!-- Sets the page title that appears in the browser tab -->
     <link rel="stylesheet" href="styles.css">
     <!-- Links to our external CSS file for styling -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/flowbite/2.2.1/flowbite.min.css" rel="stylesheet">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/flowbite/2.2.1/flowbite.min.js"></script>
   </head>
   <body class="bg-gray-900 min-h-screen flex items-center justify-center p-4">
     <!-- Body contains all visible content
@@ -40,6 +42,69 @@
         <!-- Container where questions will be dynamically inserted by JavaScript -->
         <div id="result" class="hidden result-container"></div>
         <!-- Container for quiz results, initially hidden -->
+      </div>
+
+      <!-- Flowbite Card Component -->
+      <div class="mt-8 max-w-sm p-6 bg-black border border-yellow-400 rounded-lg shadow mx-auto">
+        <h5 class="mb-2 text-2xl font-bold tracking-tight text-yellow-400 text-center">Star Wars Quiz Tips</h5>
+        <p class="mb-3 font-normal text-gray-400 text-center">Test your knowledge of the Star Wars universe with our challenging questions. May the Force be with you!</p>
+      </div>
+
+      <!-- Flowbite Timeline Component -->
+      <div class="mt-8 w-full max-w-md mx-auto">
+        <ol class="space-y-6 list-none pl-0">
+          <li class="text-center">
+            <h3 class="text-lg font-semibold text-yellow-400 mb-1">Start the Quiz</h3>
+            <p class="text-base font-normal text-gray-400">Begin your journey through the Star Wars universe</p>
+          </li>
+          <li class="text-center">
+            <h3 class="text-lg font-semibold text-yellow-400 mb-1">Answer Questions</h3>
+            <p class="text-base font-normal text-gray-400">Choose your answers wisely</p>
+          </li>
+          <li class="text-center">
+            <h3 class="text-lg font-semibold text-yellow-400 mb-1">See Your Score</h3>
+            <p class="text-base font-normal text-gray-400">Discover how well you know Star Wars</p>
+          </li>
+        </ol>
+      </div>
+
+      <div class="mt-8 border-t border-yellow-400 pt-4">
+        <div class="grid grid-cols-2 gap-4 text-center">
+          <div class="p-4">
+            <p class="text-yellow-400 text-sm">Total Questions</p>
+            <p class="text-2xl text-yellow-400">5</p>
+          </div>
+          <div class="p-4">
+            <p class="text-yellow-400 text-sm">Time per Question</p>
+            <p class="text-2xl text-yellow-400">∞</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Flowbite Table Component -->
+      <div class="mt-8 w-full max-w-md mx-auto bg-black rounded-lg overflow-hidden">
+        <table class="w-full text-sm text-yellow-400">
+          <thead class="text-xs uppercase bg-black border-b border-yellow-400">
+            <tr>
+              <th scope="col" class="px-6 py-3 text-center">Achievement</th>
+              <th scope="col" class="px-6 py-3 text-center">Requirement</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr class="border-b border-yellow-400">
+              <td class="px-6 py-4 text-center">Jedi Master</td>
+              <td class="px-6 py-4 text-center">Score 5/5</td>
+            </tr>
+            <tr class="border-b border-yellow-400">
+              <td class="px-6 py-4 text-center">Padawan</td>
+              <td class="px-6 py-4 text-center">Score 3/5</td>
+            </tr>
+            <tr class="border-b border-yellow-400">
+              <td class="px-6 py-4 text-center">Youngling</td>
+              <td class="px-6 py-4 text-center">Score 1/5</td>
+            </tr>
+          </tbody>
+        </table>
       </div>
     </div>
   </body>
