@@ -1,0 +1,241 @@
+@import 'https://cdn.tailwindcss.com';
+@import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;700;900&display=swap');
+
+/* Base container styles */
+.quiz-container {
+    @apply rounded-lg shadow-lg p-8 max-w-2xl w-full mx-auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background-color: rgba(0, 0, 0, 0.9);
+    border: 2px solid #FFE81F;
+    box-shadow: 0 0 20px rgba(255, 232, 31, 0.5);
+    position: relative;
+    overflow: hidden;
+}
+
+.quiz-container::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(45deg, transparent 0%, rgba(255, 232, 31, 0.1) 50%, transparent 100%);
+    z-index: 0;
+    pointer-events: none;
+}
+
+/* Title styles */
+.quiz-title {
+    @apply text-4xl font-bold mb-8;
+    text-align: center;
+    width: 100%;
+    color: #FFE81F;
+    font-family: 'Orbitron', sans-serif;
+    text-transform: uppercase;
+    letter-spacing: 4px;
+    text-shadow: 0 0 10px #FFE81F, 0 0 20px #FFE81F, 0 0 30px #FFE81F;
+    position: relative;
+    z-index: 1;
+}
+
+/* Start button styles */
+.start-button {
+    @apply w-full py-3 px-6 rounded-lg transition duration-300 mb-6;
+    text-align: center;
+    background-color: #FFE81F;
+    color: black;
+    font-weight: bold;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    font-family: 'Orbitron', sans-serif;
+    position: relative;
+    z-index: 1;
+    border: none;
+    box-shadow: 0 0 10px rgba(255, 232, 31, 0.7);
+}
+
+.start-button:hover {
+    background-color: #FFD700;
+    box-shadow: 0 0 20px #FFE81F;
+    transform: scale(1.05);
+}
+
+/* Question text styles */
+.question-text {
+    @apply text-xl font-semibold mb-4;
+    text-align: center;
+    width: 100%;
+    color: #FFE81F;
+    font-family: 'Orbitron', sans-serif;
+    text-shadow: 0 0 5px #FFE81F;
+    position: relative;
+    z-index: 1;
+    letter-spacing: 1px;
+}
+
+/* Answer button styles */
+.answer-button {
+    @apply w-full p-3 rounded-lg border transition duration-200;
+    text-align: center;
+    display: block;
+    margin: 0 auto;
+    background-color: transparent;
+    color: #FFE81F;
+    border: 1px solid #FFE81F;
+    font-family: 'Orbitron', sans-serif;
+    position: relative;
+    z-index: 1;
+    letter-spacing: 1px;
+    overflow: hidden;
+}
+
+.answer-button::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255, 232, 31, 0.2), transparent);
+    transition: 0.5s;
+}
+
+.answer-button:hover::before {
+    left: 100%;
+}
+
+.answer-button:hover {
+    background-color: rgba(255, 232, 31, 0.1);
+    box-shadow: 0 0 15px #FFE81F;
+    transform: translateY(-2px);
+}
+
+/* Result container styles */
+.result-container {
+    @apply mt-8;
+    text-align: center;
+    width: 100%;
+    color: #FFE81F;
+    position: relative;
+    z-index: 1;
+}
+
+/* Result title styles */
+.result-title {
+    @apply text-2xl font-bold mb-4;
+    text-align: center;
+    width: 100%;
+    color: #FFE81F;
+    text-shadow: 0 0 10px #FFE81F;
+    font-family: 'Orbitron', sans-serif;
+    letter-spacing: 2px;
+}
+
+/* Result score styles */
+.result-score {
+    @apply text-xl mb-4;
+    text-align: center;
+    width: 100%;
+    color: #FFE81F;
+    font-family: 'Orbitron', sans-serif;
+}
+
+/* Try again button styles */
+.try-again-button {
+    @apply mt-4 py-2 px-4 rounded-lg transition duration-300;
+    text-align: center;
+    display: block;
+    margin: 0 auto;
+    background-color: #FFE81F;
+    color: black;
+    font-weight: bold;
+    font-family: 'Orbitron', sans-serif;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    position: relative;
+    z-index: 1;
+    box-shadow: 0 0 10px rgba(255, 232, 31, 0.7);
+}
+
+.try-again-button:hover {
+    background-color: #FFD700;
+    box-shadow: 0 0 20px #FFE81F;
+    transform: scale(1.05);
+}
+
+/* Question container styles */
+#question-container {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    position: relative;
+    z-index: 1;
+}
+
+/* Quiz content styles */
+#quiz-content {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    position: relative;
+    z-index: 1;
+}
+
+/* Initial info styles */
+#initial-info {
+    width: 100%;
+    text-align: center;
+    color: #FFE81F;
+    position: relative;
+    z-index: 1;
+}
+
+/* Space between answers */
+.space-y-3 {
+    width: 100%;
+    max-width: 500px;
+    margin: 0 auto;
+}
+
+/* Body background */
+body {
+    background-color: black;
+    background-image: url('https://images.unsplash.com/photo-1506318137071-a8e063b4bec0?ixlib=rb-1.2.1&auto=format&fit=crop&w=1950&q=80');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    position: relative;
+}
+
+body::before {
+    content: '';
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: radial-gradient(circle at center, transparent 0%, rgba(0, 0, 0, 0.8) 100%);
+    z-index: -1;
+}
+
+/* Star animation */
+@keyframes twinkle {
+    0% { opacity: 0.3; }
+    50% { opacity: 1; }
+    100% { opacity: 0.3; }
+}
+
+.star {
+    position: fixed;
+    width: 2px;
+    height: 2px;
+    background-color: white;
+    border-radius: 50%;
+    animation: twinkle 3s infinite;
+    z-index: -1;
+} 

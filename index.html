@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<!-- Declares that this is an HTML5 document -->
+<html lang="en">
+<!-- Opens the HTML document and sets the language to English for accessibility -->
+  <head>
+    <!-- Head section contains metadata and resource links -->
+    <meta charset="UTF-8" />
+    <!-- Specifies the character encoding for the document (supports all Unicode characters) -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <!-- Makes the page responsive by setting the viewport width to device width and initial zoom level -->
+    <title>Star Wars Trivia Quiz</title>
+    <!-- Sets the page title that appears in the browser tab -->
+    <link rel="stylesheet" href="styles.css">
+    <!-- Links to our external CSS file for styling -->
+  </head>
+  <body class="bg-gray-900 min-h-screen flex items-center justify-center p-4">
+    <!-- Body contains all visible content
+         bg-gray-900: Sets dark background color
+         min-h-screen: Makes body at least full viewport height
+         flex items-center justify-center: Centers content both vertically and horizontally
+         p-4: Adds padding around the content -->
+    <div class="quiz-container mx-auto">
+      <!-- Main container for the quiz with styling from styles.css -->
+      <h1 class="quiz-title">Star Wars Trivia Quiz</h1>
+      <!-- Main heading with yellow styling from styles.css -->
+      <div id="initial-info" class="text-center">
+        <!-- Container for the initial quiz information and start button -->
+        <p class="text-gray-200 mb-4">Test your Star Wars knowledge with this exciting trivia quiz! Each question has 5 possible answers. May the Force be with you!</p>
+        <!-- Introduction text with light gray color, bottom margin, and center alignment -->
+        <button id="start-btn" class="start-button">
+          Start Quiz
+        </button>
+        <!-- Start button with yellow styling and hover effects from styles.css -->
+      </div>
+      
+      <div id="quiz-content" class="hidden">
+        <!-- Container for questions and results, initially hidden -->
+        <div id="question-container" class="text-center"></div>
+        <!-- Container where questions will be dynamically inserted by JavaScript -->
+        <div id="result" class="hidden result-container"></div>
+        <!-- Container for quiz results, initially hidden -->
+      </div>
+    </div>
+  </body>
+  <script src="quiz.js"></script>
+  <!-- Links to our JavaScript file that contains quiz logic -->
+</html>
