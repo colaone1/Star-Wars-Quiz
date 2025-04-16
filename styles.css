@@ -258,6 +258,11 @@ body::before {
     filter: invert(88%) sepia(44%) saturate(1071%) hue-rotate(359deg) brightness(103%) contrast(104%);
 }
 
+/* Windu image styles */
+img[src*="Windu-Vector"] {
+    filter: invert(88%) sepia(44%) saturate(1071%) hue-rotate(359deg) brightness(103%) contrast(104%);
+}
+
 /* Quote container styles */
 #quote-container {
     border-top: 1px solid rgba(255, 232, 31, 0.3);
@@ -285,4 +290,21 @@ body::before {
     margin-bottom: 2rem;
     font-family: 'Orbitron', sans-serif;
     letter-spacing: 1px;
+}
+
+.timer-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 0.75rem 1.5rem;
+    border: 2px solid #FFE81F;
+    border-radius: 0.5rem;
+    background-color: rgba(0, 0, 0, 0.7);
+    min-width: 200px;
+    margin-bottom: 1rem;
+}
+
+.timer-container span {
+    font-family: 'Orbitron', sans-serif;
+    letter-spacing: 2px;
 } 

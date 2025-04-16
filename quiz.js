@@ -60,6 +60,8 @@ const questions = [
 // Variables to track quiz state
 let currentQuestion = 0;  // Keeps track of which question is currently being shown
 let score = 0;  // Keeps track of how many correct answers the user has given
+let timer = null;  // Variable to store the timer
+let timeLeft = 60;  // Time in seconds for each question
 
 // Get references to HTML elements we'll need to manipulate
 const startBtn = document.getElementById('start-btn');
@@ -75,23 +77,44 @@ startBtn.addEventListener('click', startQuiz);
 function startQuiz() {
     initialInfo.style.display = 'none';  // Hide the initial information
     quizContent.classList.remove('hidden');  // Show the quiz content
+    timeLeft = 60;  // Reset timer
     showQuestion();  // Display the first question
+}
+
+// Function to start the timer
+function startTimer() {
+    const timerDisplay = document.getElementById('timer');
+    if (timer) clearInterval(timer);
+    
+    timer = setInterval(() => {
+        timeLeft--;
+        timerDisplay.textContent = timeLeft;
+        
+        if (timeLeft <= 0) {
+            clearInterval(timer);
+            currentQuestion++;
+            timeLeft = 60;
+            showQuestion();
+        }
+    }, 1000);
 }
 
 // Function to display the current question
 function showQuestion() {
-    // Check if we've reached the end of the questions
     if (currentQuestion >= questions.length) {
-        showResult();  // If so, show the final results
+        showResult();
         return;
     }
 
-    // Get the current question object
     const question = questions[currentQuestion];
     
-    // Create the HTML for the question and answer buttons
     let questionHTML = `
         <div class="flex flex-col items-center w-full">
+            <div class="timer-container mb-4">
+                <span class="text-yellow-400 text-xl">Time Left: <span id="timer">60</span>s</span>
+            </div>
+            ${currentQuestion === 0 ? '<img src="images/Lightsaber-Vector.png" alt="Lightsaber" class="yoda-logo">' : ''}
+            ${currentQuestion === 3 ? '<img src="images/darth vader.png" alt="Darth Vader" class="yoda-logo">' : ''}
             <h2 class="question-text text-center mb-6">${question.question}</h2>
             <div class="flex flex-col items-center w-full gap-4">
     `;
@@ -109,10 +132,16 @@ function showQuestion() {
     questionHTML += '</div></div>';
     // Insert the question HTML into the question container
     questionContainer.innerHTML = questionHTML;
+    
+    // Start the timer for this question
+    timeLeft = 60;
+    startTimer();
 }
 
 // Function to check if the selected answer is correct
 function checkAnswer(answerIndex) {
+    if (timer) clearInterval(timer);  // Clear the timer when answer is selected
+    
     const question = questions[currentQuestion];
     // If the selected answer matches the correct answer index
     if (answerIndex === question.correct) {
@@ -120,11 +149,13 @@ function checkAnswer(answerIndex) {
     }
 
     currentQuestion++;  // Move to the next question
+    timeLeft = 60;  // Reset timer for next question
     showQuestion();  // Display the next question
 }
 
 // Function to display the final results
 function showResult() {
+    if (timer) clearInterval(timer);  // Clear the timer
     questionContainer.innerHTML = '';  // Clear the question container
     resultDiv.classList.remove('hidden');  // Show the result container
     
@@ -142,6 +173,8 @@ function showResult() {
 function resetQuiz() {
     currentQuestion = 0;  // Reset question counter
     score = 0;  // Reset score
+    timeLeft = 60;  // Reset timer
+    if (timer) clearInterval(timer);  // Clear any existing timer
     resultDiv.classList.add('hidden');  // Hide results
     initialInfo.style.display = 'block';  // Show initial information
     quizContent.classList.add('hidden');  // Hide quiz content
