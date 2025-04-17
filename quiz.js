@@ -128,7 +128,7 @@ function showQuestion() {
     } else if (questionText === "what does darth vader say when luke is hanging on the edge of the platform?") {
         questionImage = '<img src="images/darth vader update.svg" alt="Darth Vader" class="yoda-logo">';
     } else if (questionText === "what is the name of the short furry creatures that inhabit the planet of endor?") {
-        questionImage = '<img src="images/stormtrooper.svg" alt="Stormtrooper" class="quiz-image">';
+        questionImage = '<img src="images/troopernew.png" alt="Stormtrooper" class="yoda-logo">';
     }
 
     let questionHTML = `

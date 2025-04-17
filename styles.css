@@ -258,6 +258,11 @@ body::before {
     filter: invert(88%) sepia(44%) saturate(1071%) hue-rotate(359deg) brightness(103%) contrast(104%);
 }
 
+/* Override any other filters for stormtrooper */
+.yoda-logo[src*="stormtrooper.svg"] {
+    filter: invert(88%) sepia(44%) saturate(1071%) hue-rotate(359deg) brightness(103%) contrast(104%) !important;
+}
+
 /* Windu image styles */
 img[src*="Windu-Vector"] {
     filter: invert(88%) sepia(44%) saturate(1071%) hue-rotate(359deg) brightness(103%) contrast(104%);
@@ -324,7 +329,7 @@ img[src*="milleniumfalcon"] {
     position: relative;
     margin: 0 auto;
     box-shadow: 0 0 10px rgba(0, 102, 204, 0.5);
-    padding-left: 60px; /* Doubled space for the longer handle */
+    padding-left: 60px;
 }
 
 .progress-bar-container::before {
@@ -332,7 +337,7 @@ img[src*="milleniumfalcon"] {
     position: absolute;
     left: 0;
     top: 0;
-    width: 60px; /* Doubled handle width */
+    width: 60px;
     height: 100%;
     background-color: #333;
     border-right: 2px solid #666;
