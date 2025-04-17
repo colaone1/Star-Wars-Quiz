@@ -263,6 +263,11 @@ img[src*="Windu-Vector"] {
     filter: invert(88%) sepia(44%) saturate(1071%) hue-rotate(359deg) brightness(103%) contrast(104%);
 }
 
+/* Millennium Falcon image styles */
+img[src*="milleniumfalcon"] {
+    filter: invert(88%) sepia(44%) saturate(1071%) hue-rotate(359deg) brightness(103%) contrast(104%);
+}
+
 /* Quote container styles */
 #quote-container {
     border-top: 1px solid rgba(255, 232, 31, 0.3);
@@ -313,17 +318,51 @@ img[src*="Windu-Vector"] {
 .progress-bar-container {
     height: 20px;
     background-color: rgba(0, 0, 0, 0.5);
-    border: 1px solid #FFE81F;
+    border: 1px solid #0066cc;
     border-radius: 10px;
     overflow: hidden;
     position: relative;
     margin: 0 auto;
+    box-shadow: 0 0 10px rgba(0, 102, 204, 0.5);
+    padding-left: 60px; /* Doubled space for the longer handle */
+}
+
+.progress-bar-container::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 60px; /* Doubled handle width */
+    height: 100%;
+    background-color: #333;
+    border-right: 2px solid #666;
+    z-index: 2;
 }
 
 .progress-bar {
     height: 100%;
-    background-color: #FFE81F;
+    background-color: #0066cc;
     transition: width 0.3s ease;
+    box-shadow: 0 0 15px #0066cc, 0 0 30px #0066cc;
+    position: relative;
+    animation: pulse 2s infinite;
+}
+
+@keyframes pulse {
+    0% { box-shadow: 0 0 15px #0066cc, 0 0 30px #0066cc; }
+    50% { box-shadow: 0 0 20px #0066cc, 0 0 40px #0066cc, 0 0 60px #0066cc; }
+    100% { box-shadow: 0 0 15px #0066cc, 0 0 30px #0066cc; }
+}
+
+.progress-bar::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 10px;
+    height: 100%;
+    background-color: #66b3ff;
+    box-shadow: 0 0 20px #66b3ff;
 }
 
 .progress-text {
@@ -335,4 +374,18 @@ img[src*="Windu-Vector"] {
     font-weight: bold;
     font-size: 12px;
     text-shadow: 0 0 2px white;
+}
+
+/* Quiz image styles */
+.quiz-image {
+    width: 200px;
+    height: auto;
+    display: block;
+    margin: 20px auto;
+    filter: none !important;
+}
+
+img[src*="stormtrooper"] {
+    filter: none !important;
+    -webkit-filter: none !important;
 } 

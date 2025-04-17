@@ -114,23 +114,7 @@ function showQuestion() {
     }
 
     const question = questions[currentQuestion];
-    console.log("Current question:", question.question);  // Debug log
     
-    let questionImage = '';
-    const questionText = question.question.toLowerCase();
-    
-    if (questionText === "what colour is mace windu's lightsaber?") {
-        questionImage = '<img src="images/Lightsaber-Vector.png" alt="Lightsaber" class="yoda-logo">';
-    } else if (questionText === "what is the emperor's sith name?") {
-        questionImage = '<img src="images/deathstar.png" alt="Death Star" class="yoda-logo">';
-    } else if (questionText === "what is the name of the ship that han solo and chewbacca fly in the original trilogy?") {
-        questionImage = '<img src="images/chewbakka.svg" alt="Chewbacca" class="yoda-logo">';
-    } else if (questionText === "what does darth vader say when luke is hanging on the edge of the platform?") {
-        questionImage = '<img src="images/darth vader update.svg" alt="Darth Vader" class="yoda-logo">';
-    } else if (questionText === "what is the name of the short furry creatures that inhabit the planet of endor?") {
-        questionImage = '<img src="images/stormtrooper.svg" alt="Stormtrooper" class="quiz-image">';
-    }
-
     let questionHTML = `
         <div class="flex flex-col items-center w-full">
             <div class="progress-bar-container mb-4 w-full max-w-md">
@@ -139,7 +123,22 @@ function showQuestion() {
             <div class="timer-container mb-4">
                 <span class="text-yellow-400 text-xl">Time Left: <span id="timer">60</span>s</span>
             </div>
-            ${questionImage}
+    `;
+    
+    // Add the appropriate image based on the question
+    if (question.question.includes("Mace Windu")) {
+        questionHTML += '<img src="images/Lightsaber-Vector.png" alt="Lightsaber" class="yoda-logo">';
+    } else if (question.question.includes("Emperor")) {
+        questionHTML += '<img src="images/deathstar.png" alt="Death Star" class="yoda-logo">';
+    } else if (question.question.includes("Han Solo")) {
+        questionHTML += '<img src="images/chewbakka.svg" alt="Chewbacca" class="yoda-logo">';
+    } else if (question.question.includes("Darth Vader")) {
+        questionHTML += '<img src="images/darth vader update.svg" alt="Darth Vader" class="yoda-logo">';
+    } else if (question.question.includes("Ewoks")) {
+        questionHTML += '<img src="images/trooper.png" alt="Stormtrooper" class="yoda-logo">';
+    }
+    
+    questionHTML += `
             <h2 class="question-text text-center mb-6">${question.question}</h2>
             <div class="flex flex-col items-center w-full gap-4">
     `;
