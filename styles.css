@@ -1,7 +1,7 @@
 @import 'https://cdn.tailwindcss.com';
 @import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;700;900&display=swap');
 
-/* Base container styles */
+/* Main quiz container styling */
 .quiz-container {
     max-width: 800px;
     width: 90%;
@@ -15,6 +15,7 @@
     overflow: hidden;
 }
 
+/* Background gradient effect for quiz container */
 .quiz-container::before {
     content: '';
     position: absolute;
@@ -27,7 +28,7 @@
     pointer-events: none;
 }
 
-/* Title styles */
+/* Quiz title styling */
 .quiz-title {
     @apply text-4xl font-bold mb-8;
     text-align: center;
@@ -41,7 +42,7 @@
     z-index: 1;
 }
 
-/* Start button styles */
+/* Start button styling */
 .start-button {
     @apply w-full py-3 px-6 rounded-lg transition duration-300 mb-6;
     text-align: center;
@@ -57,13 +58,14 @@
     box-shadow: 0 0 10px rgba(255, 232, 31, 0.7);
 }
 
+/* Start button hover effect */
 .start-button:hover {
     background-color: #FFD700;
     box-shadow: 0 0 20px #FFE81F;
     transform: scale(1.05);
 }
 
-/* Question text styles */
+/* Question text styling */
 .question-text {
     @apply text-xl font-semibold mb-4;
     text-align: center;
@@ -76,7 +78,7 @@
     letter-spacing: 1px;
 }
 
-/* Space between answers */
+/* Answer button container styling */
 .space-y-3 {
     width: 100%;
     max-width: 800px;
@@ -88,7 +90,7 @@
     justify-content: center;
 }
 
-/* Answer button styles */
+/* Answer button styling */
 .answer-button {
     @apply py-3 px-6 rounded-lg transition duration-200;
     background-color: transparent;
@@ -101,28 +103,110 @@
     overflow: hidden;
 }
 
-.answer-button::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: -100%;
-    width: 100%;
-    height: 100%;
-    background: linear-gradient(90deg, transparent, rgba(255, 232, 31, 0.2), transparent);
-    transition: 0.5s;
-}
-
-.answer-button:hover::before {
-    left: 100%;
-}
-
+/* Answer button hover effect */
 .answer-button:hover {
     background-color: rgba(255, 232, 31, 0.1);
     box-shadow: 0 0 15px #FFE81F;
     transform: translateY(-2px);
 }
 
-/* Result container styles */
+/* Yoda logo styling */
+.yoda-logo {
+    width: 200px;
+    display: block;
+    margin: 0 auto 20px;
+    filter: invert(88%) sepia(44%) saturate(1071%) hue-rotate(359deg) brightness(103%) contrast(104%);
+    cursor: pointer;
+    transition: transform 0.3s ease;
+}
+
+/* Yoda logo hover effect */
+.yoda-logo:hover {
+    transform: scale(1.05);
+}
+
+/* Star Wars logo styling */
+.star-wars-logo {
+    width: 200px;
+    height: auto;
+    margin: 1rem auto 2rem;
+    display: block;
+    filter: brightness(0) invert(1);
+    cursor: pointer;
+    transition: transform 0.3s ease;
+}
+
+/* Star Wars logo hover effect */
+.star-wars-logo:hover {
+    transform: scale(1.05);
+}
+
+/* Restart button styling */
+.restart-button {
+    background-color: #FFE81F;
+    color: #000;
+    padding: 0.5rem 1rem;
+    border-radius: 0.25rem;
+    font-weight: bold;
+    transition: all 0.3s ease;
+    border: 2px solid #FFE81F;
+    cursor: pointer;
+    margin-top: 1rem;
+    font-family: 'Orbitron', sans-serif;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+/* Restart button hover effect */
+.restart-button:hover {
+    background-color: transparent;
+    color: #FFE81F;
+    transform: scale(1.05);
+}
+
+/* Timer container styling */
+.timer-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 0.75rem 1.5rem;
+    border: 2px solid #FFE81F;
+    border-radius: 0.5rem;
+    background-color: rgba(0, 0, 0, 0.7);
+    min-width: 200px;
+    margin-bottom: 1rem;
+}
+
+/* Progress bar container styling */
+.progress-bar-container {
+    height: 20px;
+    background-color: rgba(0, 0, 0, 0.5);
+    border: 1px solid #0066cc;
+    border-radius: 10px;
+    overflow: hidden;
+    position: relative;
+    margin: 0 auto;
+    box-shadow: 0 0 10px rgba(0, 102, 204, 0.5);
+}
+
+/* Progress bar styling */
+.progress-bar {
+    height: 100%;
+    background-color: #0066cc;
+    transition: width 0.3s ease;
+    box-shadow: 0 0 15px #0066cc, 0 0 30px #0066cc;
+    position: relative;
+    animation: pulse 2s infinite;
+}
+
+/* Progress bar pulse animation */
+@keyframes pulse {
+    0% { box-shadow: 0 0 15px #0066cc, 0 0 30px #0066cc; }
+    50% { box-shadow: 0 0 20px #0066cc, 0 0 40px #0066cc, 0 0 60px #0066cc; }
+    100% { box-shadow: 0 0 15px #0066cc, 0 0 30px #0066cc; }
+}
+
+/* Result container styling */
 .result-container {
     @apply mt-8;
     text-align: center;
@@ -132,7 +216,7 @@
     z-index: 1;
 }
 
-/* Result title styles */
+/* Result title styling */
 .result-title {
     @apply text-2xl font-bold mb-4;
     text-align: center;
@@ -143,7 +227,7 @@
     letter-spacing: 2px;
 }
 
-/* Result score styles */
+/* Result score styling */
 .result-score {
     @apply text-xl mb-4;
     text-align: center;
@@ -152,7 +236,7 @@
     font-family: 'Orbitron', sans-serif;
 }
 
-/* Try again button styles */
+/* Try again button styling */
 .try-again-button {
     @apply mt-4 py-2 px-4 rounded-lg transition duration-300;
     text-align: center;
@@ -169,6 +253,7 @@
     box-shadow: 0 0 10px rgba(255, 232, 31, 0.7);
 }
 
+/* Try again button hover effect */
 .try-again-button:hover {
     background-color: #FFD700;
     box-shadow: 0 0 20px #FFE81F;
@@ -241,13 +326,116 @@ body::before {
     z-index: -1;
 }
 
+/* Override any other filters for stormtrooper */
+.yoda-logo[src*="stormtrooper.svg"] {
+    filter: invert(88%) sepia(44%) saturate(1071%) hue-rotate(359deg) brightness(103%) contrast(104%) !important;
+}
+
+/* Windu image styles */
+img[src*="Windu-Vector"] {
+    filter: invert(88%) sepia(44%) saturate(1071%) hue-rotate(359deg) brightness(103%) contrast(104%);
+}
+
+/* Millennium Falcon image styles */
+img[src*="milleniumfalcon"] {
+    filter: invert(88%) sepia(44%) saturate(1071%) hue-rotate(359deg) brightness(103%) contrast(104%);
+}
+
+/* Quote container styles */
+#quote-container {
+    border-top: 1px solid rgba(255, 232, 31, 0.3);
+    padding-top: 20px;
+    margin-top: 40px;
+    color: #FFE81F;
+    text-shadow: 0 0 5px rgba(255, 232, 31, 0.5);
+    transition: opacity 0.3s ease;
+}
+
+#quote-container:hover {
+    opacity: 1;
+}
+
+#current-quote {
+    font-family: 'Orbitron', sans-serif;
+    letter-spacing: 1px;
+}
+
+.question-text {
+    font-size: 1.5rem;
+    font-weight: 600;
+    color: #FFE81F;
+    text-shadow: 0 0 5px #FFE81F;
+    margin-bottom: 2rem;
+    font-family: 'Orbitron', sans-serif;
+    letter-spacing: 1px;
+}
+
+.timer-container span {
+    font-family: 'Orbitron', sans-serif;
+    letter-spacing: 2px;
+}
+
+.progress-bar-container::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 60px;
+    height: 100%;
+    background-color: #333;
+    border-right: 2px solid #666;
+    z-index: 2;
+}
+
+.progress-bar::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 10px;
+    height: 100%;
+    background-color: #66b3ff;
+    box-shadow: 0 0 20px #66b3ff;
+}
+
+.progress-text {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    color: black;
+    font-weight: bold;
+    font-size: 12px;
+    text-shadow: 0 0 2px white;
+}
+
+/* Quiz image styles */
+.quiz-image {
+    width: 200px;
+    height: auto;
+    display: block;
+    margin: 20px auto;
+    filter: none !important;
+}
+
+img[src*="stormtrooper"] {
+    filter: none !important;
+    -webkit-filter: none !important;
+}
+
 /* Star Wars logo styles */
 .star-wars-logo {
     width: 200px;
     height: auto;
     margin: 1rem auto 2rem;
     display: block;
-    filter: brightness(0) invert(1); /* Makes the logo yellow to match theme */
+    filter: brightness(0) invert(1);
+    cursor: pointer;
+    transition: transform 0.3s ease;
+}
+
+.star-wars-logo:hover {
+    transform: scale(1.05);
 }
 
 /* Yoda logo styles */
@@ -256,6 +444,12 @@ body::before {
     display: block;
     margin: 0 auto 20px;
     filter: invert(88%) sepia(44%) saturate(1071%) hue-rotate(359deg) brightness(103%) contrast(104%);
+    cursor: pointer;
+    transition: transform 0.3s ease;
+}
+
+.yoda-logo:hover {
+    transform: scale(1.05);
 }
 
 /* Override any other filters for stormtrooper */
@@ -317,49 +511,6 @@ img[src*="milleniumfalcon"] {
 .timer-container span {
     font-family: 'Orbitron', sans-serif;
     letter-spacing: 2px;
-}
-
-.timer-warning {
-    color: #ff4444 !important;
-    animation: pulse-warning 1s infinite;
-}
-
-@keyframes pulse-warning {
-    0% { opacity: 1; }
-    50% { opacity: 0.5; }
-    100% { opacity: 1; }
-}
-
-.correct-answer {
-    background-color: rgba(0, 255, 0, 0.2) !important;
-    border-color: #00ff00 !important;
-}
-
-.incorrect-answer {
-    background-color: rgba(255, 0, 0, 0.2) !important;
-    border-color: #ff0000 !important;
-}
-
-.difficulty-indicator {
-    font-size: 0.8rem;
-    padding: 0.2rem 0.5rem;
-    border-radius: 0.25rem;
-    margin-bottom: 0.5rem;
-}
-
-.difficulty-easy {
-    background-color: rgba(0, 255, 0, 0.2);
-    color: #00ff00;
-}
-
-.difficulty-medium {
-    background-color: rgba(255, 165, 0, 0.2);
-    color: #ffa500;
-}
-
-.difficulty-hard {
-    background-color: rgba(255, 0, 0, 0.2);
-    color: #ff0000;
 }
 
 /* Progress bar styles */
@@ -438,7 +589,7 @@ img[src*="stormtrooper"] {
     -webkit-filter: none !important;
 }
 
-.next-question-button {
+.restart-button {
     background-color: #FFE81F;
     color: #000;
     padding: 0.5rem 1rem;
@@ -447,14 +598,14 @@ img[src*="stormtrooper"] {
     transition: all 0.3s ease;
     border: 2px solid #FFE81F;
     cursor: pointer;
+    margin-top: 1rem;
+    font-family: 'Orbitron', sans-serif;
+    text-transform: uppercase;
+    letter-spacing: 1px;
 }
 
-.next-question-button:hover {
+.restart-button:hover {
     background-color: transparent;
     color: #FFE81F;
     transform: scale(1.05);
-}
-
-.next-question-button:active {
-    transform: scale(0.95);
 } 

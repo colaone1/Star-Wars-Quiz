@@ -1,4 +1,4 @@
-// Array of quiz questions, each containing a question, possible answers, and the index of the correct answer
+// Array of quiz questions with their answers, correct answer index, and difficulty level
 const questions = [
     {
         question: "What colour is Mace Windu's lightsaber?",
@@ -9,9 +9,8 @@ const questions = [
             "Green",
             "Pink"
         ],
-        correct: 1,
-        difficulty: "easy",
-        funFact: "Samuel L. Jackson specifically requested a purple lightsaber so he could be easily identified in battle scenes!"
+        correct: 1,  // Index 1 (Purple) is the correct answer
+        difficulty: "easy"
     },
     {
         question: "What is the Emperor's sith name?",
@@ -22,9 +21,8 @@ const questions = [
             "Darth Sidious",
             "Mace Windu"
         ],
-        correct: 3,
-        difficulty: "medium",
-        funFact: "The name 'Sidious' is derived from the word 'insidious', reflecting his deceptive nature."
+        correct: 3,  // Index 3 (Darth Sidious) is the correct answer
+        difficulty: "medium"
     },
     {
         question: "What is the name of the ship that Han Solo and Chewbacca fly in the original trilogy?",
@@ -35,9 +33,8 @@ const questions = [
             "Death Star",
             "Star Destroyer"
         ],
-        correct: 2,
-        difficulty: "easy",
-        funFact: "The Millennium Falcon's design was inspired by a hamburger with an olive on the side!"
+        correct: 2,  // Index 2 (Millennium Falcon) is the correct answer
+        difficulty: "easy"
     },
     {
         question: "What does Darth Vader say when Luke is hanging on the edge of the platform?",
@@ -48,9 +45,8 @@ const questions = [
             "Wait here I'll be right back",
             "I'm not your father"
         ],
-        correct: 2,
-        difficulty: "medium",
-        funFact: "The original line in English is 'No, I am your father', not 'Luke, I am your father' as commonly misquoted!"
+        correct: 2,  // Index 2 (I am your father) is the correct answer
+        difficulty: "medium"
     },
     {
         question: "What is the name of the short furry creatures that inhabit the planet of Endor?",
@@ -61,9 +57,8 @@ const questions = [
             "Wookies",
             "Protheans"
         ],
-        correct: 0,
-        difficulty: "hard",
-        funFact: "The Ewok language was created by mixing various Asian languages including Tibetan and Nepali!"
+        correct: 0,  // Index 0 (Ewoks) is the correct answer
+        difficulty: "hard"
     }
 ];
 
@@ -80,36 +75,29 @@ const questionContainer = document.getElementById('question-container');
 const resultDiv = document.getElementById('result');
 const initialInfo = document.getElementById('initial-info');
 
-// Add sound effect variables
-const correctSound = new Audio('sounds/correct.mp3');
-const incorrectSound = new Audio('sounds/incorrect.mp3');
-
-// Add Star Wars quotes for different score ranges
-const starWarsQuotes = {
-    perfect: [
-        "Do. Or do not. There is no try. - Yoda",
-        "The Force is strong with this one. - Darth Vader",
-        "Never tell me the odds! - Han Solo"
-    ],
-    good: [
-        "Great, kid! Don't get cocky. - Han Solo",
-        "Your focus determines your reality. - Qui-Gon Jinn",
-        "In my experience, there's no such thing as luck. - Obi-Wan Kenobi"
-    ],
-    average: [
-        "Much to learn you still have. - Yoda",
-        "Stay on target! - Gold Five",
-        "I find your lack of faith disturbing. - Darth Vader"
-    ],
-    needsPractice: [
-        "Try not. Do. Or do not. There is no try. - Yoda",
-        "The greatest teacher, failure is. - Yoda",
-        "You have taken your first step into a larger world. - Obi-Wan Kenobi"
-    ]
-};
-
 // Add click event listener to the start button
 startBtn.addEventListener('click', startQuiz);
+
+// Add click event listeners for logos when the page loads
+document.addEventListener('DOMContentLoaded', function() {
+    // Get references to the logo images
+    const yodaImage = document.querySelector('.yoda-logo');
+    const starWarsLogo = document.querySelector('.star-wars-logo');
+    
+    // Add click handler for Yoda image - only starts quiz from start page
+    if (yodaImage) {
+        yodaImage.addEventListener('click', function() {
+            if (quizContent.classList.contains('hidden')) {
+                startQuiz();
+            }
+        });
+    }
+    
+    // Add click handler for Star Wars logo - always resets quiz
+    if (starWarsLogo) {
+        starWarsLogo.addEventListener('click', resetQuiz);
+    }
+});
 
 // Function to start the quiz
 function startQuiz() {
@@ -135,13 +123,6 @@ function startTimer() {
         timeLeft--;
         timerDisplay.textContent = timeLeft;
         
-        // Add warning class when time is low
-        if (timeLeft <= 10) {
-            timerDisplay.classList.add('timer-warning');
-        } else {
-            timerDisplay.classList.remove('timer-warning');
-        }
-        
         if (timeLeft <= 0) {
             clearInterval(timer);
             currentQuestion++;
@@ -153,17 +134,17 @@ function startTimer() {
 
 // Function to display the current question
 function showQuestion() {
+    // Check if we've reached the end of the quiz
     if (currentQuestion >= questions.length) {
         showResult();
         return;
     }
 
     const question = questions[currentQuestion];
-    console.log("Current question:", question.question);  // Debug log
-    
     let questionImage = '';
     const questionText = question.question.toLowerCase();
     
+    // Set the appropriate image based on the current question
     if (questionText === "what colour is mace windu's lightsaber?") {
         questionImage = '<img src="images/Lightsaber-Vector.png" alt="Lightsaber" class="yoda-logo">';
     } else if (questionText === "what is the emperor's sith name?") {
@@ -176,6 +157,7 @@ function showQuestion() {
         questionImage = '<img src="images/troopernew.png" alt="Stormtrooper" class="yoda-logo">';
     }
 
+    // Create the HTML for the current question
     let questionHTML = `
         <div class="flex flex-col items-center w-full">
             <div class="progress-bar-container mb-4 w-full max-w-md">
@@ -184,44 +166,32 @@ function showQuestion() {
             <div class="timer-container mb-4">
                 <span class="text-yellow-400 text-xl">Time Left: <span id="timer">60</span>s</span>
             </div>
-            <div class="question-progress text-yellow-400 mb-4">
-                Question ${currentQuestion + 1} of ${questions.length}
-            </div>
-            <div class="difficulty-indicator difficulty-${question.difficulty}">
-                Difficulty: ${question.difficulty.charAt(0).toUpperCase() + question.difficulty.slice(1)}
-            </div>
             ${questionImage}
             <h2 class="question-text text-center mb-6">${question.question}</h2>
-            <div class="flex flex-col items-center w-full gap-4" role="radiogroup" aria-label="Quiz answers">
+            <div class="flex flex-col items-center w-full gap-4">
     `;
 
-    // Create a button for each possible answer
+    // Add buttons for each possible answer
     question.answers.forEach((answer, index) => {
         questionHTML += `
             <button class="answer-button w-full max-w-md"
-                    onclick="checkAnswer(${index})"
-                    role="radio"
-                    aria-checked="false"
-                    tabindex="0"
-                    data-index="${index}">
+                    onclick="checkAnswer(${index})">
                 ${answer}
             </button>
         `;
     });
 
-    questionHTML += '</div></div>';
-    questionContainer.innerHTML = questionHTML;
+    // Add the restart button and close the HTML structure
+    questionHTML += `
+            </div>
+            <button onclick="resetQuiz()" class="restart-button mt-4">
+                Restart Quiz
+            </button>
+        </div>
+    `;
     
-    // Add keyboard navigation
-    const buttons = document.querySelectorAll('.answer-button');
-    buttons.forEach(button => {
-        button.addEventListener('keydown', (e) => {
-            if (e.key === 'Enter' || e.key === ' ') {
-                e.preventDefault();
-                checkAnswer(parseInt(button.dataset.index));
-            }
-        });
-    });
+    // Update the question container with the new HTML
+    questionContainer.innerHTML = questionHTML;
     
     // Start the timer for this question
     timeLeft = 60;
@@ -233,46 +203,14 @@ function checkAnswer(answerIndex) {
     if (timer) clearInterval(timer);  // Clear the timer when answer is selected
     
     const question = questions[currentQuestion];
-    const isCorrect = answerIndex === question.correct;
-    
-    // Play sound effect
-    if (isCorrect) {
-        correctSound.play();
-    } else {
-        incorrectSound.play();
+    // If the selected answer matches the correct answer index
+    if (answerIndex === question.correct) {
+        score++;  // Increment the score
     }
-    
-    // Show feedback
-    const buttons = document.querySelectorAll('.answer-button');
-    buttons.forEach((button, index) => {
-        button.disabled = true;
-        if (index === question.correct) {
-            button.classList.add('correct-answer');
-        } else if (index === answerIndex && !isCorrect) {
-            button.classList.add('incorrect-answer');
-        }
-    });
 
-    // Show fun fact and next button
-    const funFactDiv = document.createElement('div');
-    funFactDiv.className = 'fun-fact text-yellow-400 mt-4 text-center p-4 border border-yellow-400 rounded';
-    funFactDiv.innerHTML = `
-        <strong>Fun Fact:</strong> ${question.funFact}
-        <button onclick="nextQuestion(${isCorrect})" class="next-question-button mt-4">
-            Next Question
-        </button>
-    `;
-    questionContainer.appendChild(funFactDiv);
-}
-
-// Function to move to the next question
-function nextQuestion(isCorrect) {
-    if (isCorrect) {
-        score++;
-    }
-    currentQuestion++;
-    timeLeft = 60;
-    showQuestion();
+    currentQuestion++;  // Move to the next question
+    timeLeft = 60;  // Reset timer for next question
+    showQuestion();  // Display the next question
 }
 
 // Function to display the final results
@@ -311,10 +249,5 @@ function resetQuiz() {
     resultDiv.classList.add('hidden');  // Hide results
     initialInfo.style.display = 'block';  // Show initial information
     quizContent.classList.add('hidden');  // Hide quiz content
-}
-
-// Function to get a random quote based on score
-function getRandomQuote(scoreCategory) {
-    const quotes = starWarsQuotes[scoreCategory];
-    return quotes[Math.floor(Math.random() * quotes.length)];
+    questionContainer.innerHTML = '';  // Clear question container
 } 
