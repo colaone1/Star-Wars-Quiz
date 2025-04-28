@@ -117,14 +117,20 @@ function startQuiz() {
 // Function to start the timer
 function startTimer() {
     const timerDisplay = document.getElementById('timer');
-    if (timer) clearInterval(timer);
+    if (timer) {
+        clearInterval(timer);
+        timer = null;
+    }
     
     timer = setInterval(() => {
         timeLeft--;
-        timerDisplay.textContent = timeLeft;
+        if (timerDisplay) {
+            timerDisplay.textContent = timeLeft;
+        }
         
         if (timeLeft <= 0) {
             clearInterval(timer);
+            timer = null;
             currentQuestion++;
             timeLeft = 60;
             showQuestion();
@@ -145,16 +151,16 @@ function showQuestion() {
     const questionText = question.question.toLowerCase();
     
     // Set the appropriate image based on the current question
-    if (questionText === "what colour is mace windu's lightsaber?") {
-        questionImage = '<img src="images/Lightsaber-Vector.png" alt="Lightsaber" class="yoda-logo">';
-    } else if (questionText === "what is the emperor's sith name?") {
-        questionImage = '<img src="images/deathstar.png" alt="Death Star" class="yoda-logo">';
-    } else if (questionText === "what is the name of the ship that han solo and chewbacca fly in the original trilogy?") {
-        questionImage = '<img src="images/chewbakka.svg" alt="Chewbacca" class="yoda-logo">';
-    } else if (questionText === "what does darth vader say when luke is hanging on the edge of the platform?") {
-        questionImage = '<img src="images/darth vader update.svg" alt="Darth Vader" class="yoda-logo">';
-    } else if (questionText === "what is the name of the short furry creatures that inhabit the planet of endor?") {
-        questionImage = '<img src="images/troopernew.png" alt="Stormtrooper" class="yoda-logo">';
+    if (questionText.includes("mace windu's lightsaber")) {
+        questionImage = '<img src="images/Lightsaber-Vector.png" alt="Lightsaber" class="quiz-image">';
+    } else if (questionText.includes("emperor's sith name")) {
+        questionImage = '<img src="images/deathstar.png" alt="Death Star" class="quiz-image">';
+    } else if (questionText.includes("han solo and chewbacca")) {
+        questionImage = '<img src="images/chewbakka.svg" alt="Chewbacca" class="quiz-image">';
+    } else if (questionText.includes("darth vader say")) {
+        questionImage = '<img src="images/darth vader update.svg" alt="Darth Vader" class="quiz-image">';
+    } else if (questionText.includes("short furry creatures")) {
+        questionImage = '<img src="images/troopernew.png" alt="Stormtrooper" class="quiz-image">';
     }
 
     // Create the HTML for the current question
@@ -164,7 +170,7 @@ function showQuestion() {
                 <div class="progress-bar" style="width: ${(currentQuestion / questions.length) * 100}%"></div>
             </div>
             <div class="timer-container mb-4">
-                <span class="text-yellow-400 text-xl">Time Left: <span id="timer">60</span>s</span>
+                <span class="text-yellow-400 text-xl">Time Left: <span id="timer">${timeLeft}</span>s</span>
             </div>
             ${questionImage}
             <h2 class="question-text text-center mb-6">${question.question}</h2>
@@ -191,63 +197,93 @@ function showQuestion() {
     `;
     
     // Update the question container with the new HTML
-    questionContainer.innerHTML = questionHTML;
+    if (questionContainer) {
+        questionContainer.innerHTML = questionHTML;
+    }
     
     // Start the timer for this question
-    timeLeft = 60;
     startTimer();
 }
 
 // Function to check if the selected answer is correct
 function checkAnswer(answerIndex) {
-    if (timer) clearInterval(timer);  // Clear the timer when answer is selected
+    if (timer) {
+        clearInterval(timer);
+        timer = null;
+    }
     
     const question = questions[currentQuestion];
-    // If the selected answer matches the correct answer index
     if (answerIndex === question.correct) {
-        score++;  // Increment the score
+        score++;
     }
 
-    currentQuestion++;  // Move to the next question
-    timeLeft = 60;  // Reset timer for next question
-    showQuestion();  // Display the next question
+    currentQuestion++;
+    timeLeft = 60;
+    showQuestion();
 }
 
 // Function to display the final results
 function showResult() {
-    if (timer) clearInterval(timer);  // Clear the timer
-    questionContainer.innerHTML = '';  // Clear the question container
-    resultDiv.classList.remove('hidden');  // Show the result container
+    if (timer) {
+        clearInterval(timer);
+        timer = null;
+    }
     
-    // Create and display the results HTML
-    resultDiv.innerHTML = `
-        <h2 class="result-title">Quiz Complete!</h2>
-        <img src="images/Yoda-Vector.svg" alt="Yoda" class="yoda-logo mb-8">
-        <p class="result-score">Your score: ${score} out of ${questions.length}</p>
-        <div class="result-message mb-6">
-            ${score === questions.length ? 
-                '<p class="text-yellow-400 text-xl">Perfect score! You are a true Star Wars master!</p>' : 
-                score >= questions.length * 0.8 ? 
-                '<p class="text-yellow-400 text-xl">Impressive! The Force is strong with you!</p>' : 
-                score >= questions.length * 0.6 ? 
-                '<p class="text-yellow-400 text-xl">Good job! You know your Star Wars!</p>' : 
-                '<p class="text-yellow-400 text-xl">Keep practicing! May the Force be with you!</p>'
-            }
-        </div>
-        <button onclick="resetQuiz()" class="try-again-button">
-            Try Again
-        </button>
-    `;
+    if (questionContainer) {
+        questionContainer.innerHTML = '';
+    }
+    
+    if (resultDiv) {
+        resultDiv.classList.remove('hidden');
+        
+        let message = '';
+        if (score === questions.length) {
+            message = 'Perfect score! You are a true Star Wars master!';
+        } else if (score >= questions.length * 0.8) {
+            message = 'Impressive! The Force is strong with you!';
+        } else if (score >= questions.length * 0.6) {
+            message = 'Good job! You know your Star Wars!';
+        } else {
+            message = 'Keep practicing! May the Force be with you!';
+        }
+        
+        resultDiv.innerHTML = `
+            <h2 class="result-title">Quiz Complete!</h2>
+            <img src="images/Yoda-Vector.svg" alt="Yoda" class="quiz-image mb-8">
+            <p class="result-score">Your score: ${score} out of ${questions.length}</p>
+            <div class="result-message mb-6">
+                <p class="text-yellow-400 text-xl">${message}</p>
+            </div>
+            <button onclick="resetQuiz()" class="try-again-button">
+                Try Again
+            </button>
+        `;
+    }
 }
 
 // Function to reset the quiz to its initial state
 function resetQuiz() {
-    currentQuestion = 0;  // Reset question counter
-    score = 0;  // Reset score
-    timeLeft = 60;  // Reset timer
-    if (timer) clearInterval(timer);  // Clear any existing timer
-    resultDiv.classList.add('hidden');  // Hide results
-    initialInfo.style.display = 'block';  // Show initial information
-    quizContent.classList.add('hidden');  // Hide quiz content
-    questionContainer.innerHTML = '';  // Clear question container
+    currentQuestion = 0;
+    score = 0;
+    timeLeft = 60;
+    if (timer) {
+        clearInterval(timer);
+        timer = null;
+    }
+    
+    if (resultDiv) {
+        resultDiv.classList.add('hidden');
+    }
+    
+    if (initialInfo) {
+        initialInfo.style.display = 'block';
+    }
+    
+    if (quizContent) {
+        quizContent.classList.add('hidden');
+    }
+    
+    if (questionContainer) {
+        questionContainer.innerHTML = '';
+    }
 } 

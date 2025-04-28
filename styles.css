@@ -112,7 +112,7 @@
 
 /* Yoda logo styling */
 .yoda-logo {
-    width: 200px;
+    width: 250px;
     display: block;
     margin: 0 auto 20px;
     filter: invert(88%) sepia(44%) saturate(1071%) hue-rotate(359deg) brightness(103%) contrast(104%);
@@ -409,21 +409,52 @@ img[src*="milleniumfalcon"] {
     text-shadow: 0 0 2px white;
 }
 
-/* Quiz image styles */
+/* Quiz image base styles */
 .quiz-image {
     width: 200px;
     height: auto;
     display: block;
-    margin: 20px auto;
-    filter: none !important;
+    margin: 0 auto 20px;
+    filter: drop-shadow(0 0 10px rgba(255, 232, 31, 0.5));
+    transition: transform 0.3s ease;
+    cursor: pointer;
 }
 
-img[src*="stormtrooper"] {
-    filter: none !important;
-    -webkit-filter: none !important;
+.quiz-image:hover {
+    transform: scale(1.05);
 }
 
-/* Star Wars logo styles */
+/* Special case for Yoda result image */
+.quiz-image[src*="Yoda-Vector"] {
+    filter: invert(88%) sepia(44%) saturate(1071%) hue-rotate(359deg) brightness(103%) contrast(104%) drop-shadow(0 0 10px rgba(255, 232, 31, 0.5));
+}
+
+/* Special case for stormtrooper image */
+.quiz-image[src*="troopernew"] {
+    filter: invert(88%) sepia(44%) saturate(1071%) hue-rotate(359deg) brightness(103%) contrast(104%) drop-shadow(0 0 10px rgba(255, 232, 31, 0.5));
+}
+
+/* Special case for Windu's lightsaber */
+.quiz-image[src*="Lightsaber-Vector"] {
+    filter: invert(88%) sepia(44%) saturate(1071%) hue-rotate(359deg) brightness(103%) contrast(104%) drop-shadow(0 0 10px rgba(255, 232, 31, 0.5));
+}
+
+/* Special case for Death Star */
+.quiz-image[src*="deathstar"] {
+    filter: invert(88%) sepia(44%) saturate(1071%) hue-rotate(359deg) brightness(103%) contrast(104%) drop-shadow(0 0 10px rgba(255, 232, 31, 0.5));
+}
+
+/* Special case for Chewbacca */
+.quiz-image[src*="chewbakka"] {
+    filter: invert(88%) sepia(44%) saturate(1071%) hue-rotate(359deg) brightness(103%) contrast(104%) drop-shadow(0 0 10px rgba(255, 232, 31, 0.5));
+}
+
+/* Special case for Darth Vader */
+.quiz-image[src*="darth vader update"] {
+    filter: invert(88%) sepia(44%) saturate(1071%) hue-rotate(359deg) brightness(103%) contrast(104%) drop-shadow(0 0 10px rgba(255, 232, 31, 0.5));
+}
+
+/* Logo styles */
 .star-wars-logo {
     width: 200px;
     height: auto;
@@ -440,7 +471,7 @@ img[src*="stormtrooper"] {
 
 /* Yoda logo styles */
 .yoda-logo {
-    width: 200px;
+    width: 250px;
     display: block;
     margin: 0 auto 20px;
     filter: invert(88%) sepia(44%) saturate(1071%) hue-rotate(359deg) brightness(103%) contrast(104%);
@@ -452,22 +483,21 @@ img[src*="stormtrooper"] {
     transform: scale(1.05);
 }
 
-/* Override any other filters for stormtrooper */
-.yoda-logo[src*="stormtrooper.svg"] {
-    filter: invert(88%) sepia(44%) saturate(1071%) hue-rotate(359deg) brightness(103%) contrast(104%) !important;
-}
-
-/* Windu image styles */
-img[src*="Windu-Vector"] {
+/* Remove duplicate yoda-logo styles and consolidate */
+.yoda-logo {
+    width: 250px;
+    display: block;
+    margin: 0 auto 20px;
     filter: invert(88%) sepia(44%) saturate(1071%) hue-rotate(359deg) brightness(103%) contrast(104%);
+    cursor: pointer;
+    transition: transform 0.3s ease;
 }
 
-/* Millennium Falcon image styles */
-img[src*="milleniumfalcon"] {
-    filter: invert(88%) sepia(44%) saturate(1071%) hue-rotate(359deg) brightness(103%) contrast(104%);
+.yoda-logo:hover {
+    transform: scale(1.05);
 }
 
-/* Quote container styles */
+/* Remove duplicate quote container styles */
 #quote-container {
     border-top: 1px solid rgba(255, 232, 31, 0.3);
     padding-top: 20px;
@@ -486,6 +516,7 @@ img[src*="milleniumfalcon"] {
     letter-spacing: 1px;
 }
 
+/* Remove duplicate question text styles */
 .question-text {
     font-size: 1.5rem;
     font-weight: 600;
@@ -496,6 +527,7 @@ img[src*="milleniumfalcon"] {
     letter-spacing: 1px;
 }
 
+/* Remove duplicate timer container styles */
 .timer-container {
     display: flex;
     justify-content: center;
@@ -513,7 +545,7 @@ img[src*="milleniumfalcon"] {
     letter-spacing: 2px;
 }
 
-/* Progress bar styles */
+/* Remove duplicate progress bar styles */
 .progress-bar-container {
     height: 20px;
     background-color: rgba(0, 0, 0, 0.5);
@@ -575,20 +607,7 @@ img[src*="milleniumfalcon"] {
     text-shadow: 0 0 2px white;
 }
 
-/* Quiz image styles */
-.quiz-image {
-    width: 200px;
-    height: auto;
-    display: block;
-    margin: 20px auto;
-    filter: none !important;
-}
-
-img[src*="stormtrooper"] {
-    filter: none !important;
-    -webkit-filter: none !important;
-}
-
+/* Remove duplicate restart button styles */
 .restart-button {
     background-color: #FFE81F;
     color: #000;
